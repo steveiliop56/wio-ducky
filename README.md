@@ -85,14 +85,10 @@ To select a payload, you have to firstly press and hold the left button and you 
 
 ## Useful links and resources
 
-### How to recover your Wio Terminal if it becomes corrupted or doesn't boot.
-
-[Reset Instructions](RESET.md)
-
 ### Installation Tool
 
 [steveiliop56](https://github.com/steveilop56) Created a tool to convert a blank RPi Wio Terminal to a ducky.  
-You can find the tool [here](https://github.com/steveiliop56/pyducky)
+You can find the tool [here](https://github.com/steveiliop56/pyducky) **(no longer maintained)**
 
 ### Docs
 
