@@ -1,59 +1,67 @@
-<h1 align="center">pico-ducky</h1>
+<h1 align="center" Wio Terminal-ducky</h1>
 
 <div align="center">
   <strong>Make a cheap but powerful USB Rubber Ducky with a Wio Terminal</strong>
 </div>
 
-<br />
+<div align="center">
+  <strong>Warning! This is a fork of dbisu Wio Terminal-ducky so the code is not mine, it is just modified for the Wio terminal!</strong>
+</div>
 
 <div align="center">
-  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/dbisu/pico-ducky">
-  <img alt="GitHub license" src="https://img.shields.io/github/license/dbisu/pico-ducky">
-  <a href="https://github.com/dbisu/pico-ducky/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/dbisu/pico-ducky"></a>
-  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/dbisu/pico-ducky">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/dbisu/pico-ducky">
+  <strong>Warning! Currently nothing works because I am working in the source duckypython to fucntion on the wio terminal so this repo is just for testing.</strong>
 </div>
 
 <br />
+
+<div align="center">
+  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/steveiliop56 Wio-ducky">
+  <img alt="GitHub license" src="https://img.shields.io/github/license/steveiliop56 Wio-ducky">
+  <a href="https://github.com/steveiliop56 Wio-ducky/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/steveiliop56 Wio-ducky"></a>
+  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/steveiliop56 Wio-ducky">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/steveiliop56 Wio-ducky">
+</div>
+
+<br />
+
 
 ## Install
 
 Install and have your USB Rubber Ducky working in less than 5 minutes.
 
-1. Clone the repo to get a local copy of the files. `git clone https://github.com/dbisu/pico-ducky.git`
+1. Clone the repo to get a local copy of the files. `git clone https://github.com/steveiliop56 Wio-ducky.git`
 
-2. Download [CircuitPython for the Raspberry Pi Pico](https://circuitpython.org/board/raspberry_pi_pico/). *Updated to 8.0.0  
-   Download [CircuitPython for the Raspberry Pi Pico W](https://circuitpython.org/board/raspberry_pi_pico_w/). *Updated to 8.0.0
+2. Download [CircuitPython for the Wio Terminal](https://circuitpython.org/board/seeeduino Wio_terminal/). *Updated to 8.0.0  
 
-3. Plug the device into a USB port while holding the boot button. It will show up as a removable media device named `RPI-RP2`.
+3. Plug the device into a USB port and enter bootloader mode by sliding the power button down very fast. It will show up as a removable media device named `ARDUINO`.
 
-4. Copy the downloaded `.uf2` file to the root of the Pico (`RPI-RP2`). The device will reboot and after a second or so, it will reconnect as `CIRCUITPY`.
+4. Copy the downloaded `.uf2` file to the root of the Wio Terminal (`ARDUINO`). The device will reboot and after a second or so, it will reconnect as `CIRCUITPY`.
 
 5. Download `adafruit-circuitpython-bundle-8.x-mpy-YYYYMMDD.zip` [here](https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases/latest) and extract it outside the device.
 
-6. Navigate to `lib` in the recently extracted folder and copy `adafruit_hid` to the `lib` folder on your Raspberry Pi Pico.
+6. Navigate to `lib` in the recently extracted folder and copy `adafruit_hid` to the `lib` folder on your Raspberry Pi Wio Terminal.
 
-7. Copy `adafruit_debouncer.mpy` and `adafruit_ticks.mpy` to the `lib` folder on your Raspberry Pi Pico.
+7. Copy `adafruit_debouncer.mpy` and `adafruit_ticks.mpy` to the `lib` folder on your Raspberry Pi Wio Terminal.
 
-8. Copy `asyncio` to the `lib` folder on your Pico.
+8. Copy `asyncio` to the `lib` folder on your Wio Terminal.
 
-9. Copy `adafruit_wsgi` to the `lib` folder on your Pico.
+9. Copy `adafruit_wsgi` to the `lib` folder on your Wio Terminal.
 
-10. Copy `boot.py` from your clone to the root of your Pico.
+10. Copy `boot.py` from your clone to the root of your Wio Terminal.
 
-11. Copy `duckyinpython.py`, `code.py`, `webapp.py`, `wsgiserver.py` to the root folder of the Pico.
+11. Copy `duckyinpython.py`, `code.py`, `webapp.py`, `wsgiserver.py` to the root folder of the Wio Terminal.
 
-12. *For Pico W Only* Create the file `secrets.py` in the root of the Pico W. This contains the AP name and password to be created by the Pico W.  
+12. *If you want to use a web server* Create the file `secrets.py` in the root of the Wio Terminal W. This contains the AP name and password to be created by the Wio Terminal.  
 `secrets = { 'ssid' : "BadAPName", 'password' : "badpassword" }`
 
-13. Find a script [here](https://github.com/hak5/usbrubberducky-payloads) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Pico. Currently, pico-ducky only supports DuckScript 1.0, not 3.0.
+1.  Find a script [here](https://github.com/hak5/usbrubberducky-payloads) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Wio Terminal. Currently, wio-ducky only supports DuckScript 1.0, not 3.0.
 
-14. Be careful, if your device isn't in [setup mode](#setup-mode), the device will reboot and after half a second, the script will run.
+2.  Be careful, if your device isn't in [setup mode](#setup-mode), the device will reboot and after half a second, the script will run.
 
-15. **Please note:** by default Pico W will not show as a USB drive
+3.  **Please note:** by default Wio Terminal will not show as a USB drive!
 
-### Pico W Web Service
-The Pico W AP defaults to ip address `192.168.4.1`.  You should be able to find the webservice at `http://192.168.4.1:80`  
+### Wio Terminal Web Service
+The Wio Terminal AP defaults to ip address `192.168.4.1`.  You should be able to find the webservice at `http://192.168.4.1:80`  
 
 The following endpoints are available on the webservice:
 ```
@@ -70,117 +78,37 @@ API endpoints
 /api/run/<filenumber>
 ```
 
-### Setup mode
+### Setup mode 
 
-To edit the payload, enter setup mode by connecting the pin 1 (`GP0`) to pin 3 (`GND`), this will stop the pico-ducky from injecting the payload in your own machine.
-The easiest way to do so is by using a jumper wire between those pins as seen bellow.
+To edit the payload, enter setup mode by pressing the right top button, this will stop the Wio wio-ducky from injecting the payload in your own machine.
 
-![Setup mode with a jumper](images/setup-mode.png)
+### USB enable/disable mode 
 
-### USB enable/disable mode
-
-If you need the pico-ducky to not show up as a USB mass storage device for stealth, follow these instructions.  
+If you need the wio-ducky to not show up as a USB mass storage device for stealth, follow these instructions.  
 - Enter setup mode.    
-- Copy your payload script to the pico-ducky.  
-- Disconnect the pico from your host PC.
-- Connect a jumper wire between pin 18 (`GND`) and pin 20 (`GPIO15`).  
-This will prevent the pico-ducky from showing up as a USB drive when plugged into the target computer.  
+- Copy your payload script to the wio-ducky.  
+- Disconnect the Wio Terminal from your host PC.
+- Connect a jumper wire between pin 6 (`GND`) and pin 13 (`D0`).  
+This will prevent the Wio Terminal-ducky from showing up as a USB drive when plugged into the target computer.  
 - Remove the jumper and reconnect to your PC to reprogram.  
+ Wio Terminal: The default mode is USB mass storage enabled.
 
-Pico: The default mode is USB mass storage enabled.   
-Pico W: The default mode is USB mass storage **disabled**  
-
-![USB enable/disable mode](images/usb-boot-mode.png)
 
 ### Multiple payloads
 
-Multiple payloads can be stored on the Pico and Pico W.  
-To select a payload, ground one of these pins:
-- GP4 - payload.dd
-- GP5 - payload2.dd
-- GP10 - payload3.dd
-- GP11 - payload4.dd
-
-### Changing Keyboard Layouts
-
-Copied from [Neradoc/Circuitpython_Keyboard_Layouts](https://github.com/Neradoc/Circuitpython_Keyboard_Layouts/blob/main/PICODUCKY.md)  
-
-#### How to use one of these layouts with the pico-ducky repository.
-
-**Go to the [latest release page](https://github.com/Neradoc/Circuitpython_Keyboard_Layouts/releases/latest), look if your language is in the list.**
-
-#### If your language/layout is in the bundle
-
-Download the `py` zip, named `circuitpython-keyboard-layouts-py-XXXXXXXX.zip`
-
-**NOTE: You can use the mpy version targetting the version of Circuitpython that is on the device, but on Raspberry Pi Pico you don't need it - they only reduce file size and memory use on load, which the pico has plenty of.**
-
-#### If your language/layout is not in the bundle
-
-Try the online generator, it should get you a zip file with the bundles for yout language
-
-https://www.neradoc.me/layouts/
-
-#### Now you have a zip file
-
-#### Find your language/layout in the lib directory
-
-For a language `LANG`, copy the following files from the zip's `lib` folder to the `lib` directory of the board.  
-**DO NOT** modify the adafruit_hid directory. Your files go directly in `lib`.  
-**DO NOT** change the names or extensions of the files. Just pick the right ones.  
-Replace `LANG` with the letters for your language of choice.
-
-- `keyboard_layout_win_LANG.py`
-- `keycode_win_LANG.py`
-
-Don't forget to get [the adafruit_hid library](https://github.com/adafruit/Adafruit_CircuitPython_HID/releases/latest).
-
-This is what it should look like **if your language is French for example**.
-
-![CIRCUITPY drive screenshot](https://github.com/Neradoc/Circuitpython_Keyboard_Layouts/raw/main/docs/drive_pico_ducky.png)
-
-#### Modify the pico-ducky code to use your language file:
-
-At the start of the file comment out these lines:
-
-```py
-from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS as KeyboardLayout
-from adafruit_hid.keycode import Keycode
-```
-
-Uncomment these lines:  
-*Replace `LANG` with the letters for your language of choice. The name must match the file (without the py or mpy extension).*
-```py
-from keyboard_layout_win_LANG import KeyboardLayout
-from keycode_win_LANG import Keycode
-```
-
-##### Example:  Set to German Keyboard (WIN_DE)
-
-```py
-from keyboard_layout_win_de import KeyboardLayout
-from keycode_win_de import Keycode
-```
-
-Copy the files keyboard_layout_win_de.mpy and keycode_win_de.mpy to the /lib folder on the Pico board
-```
-adafruit_hid/
-keyboard_layout_win_de.mpy
-keycode_win_de.mpy
-```
-
-
+Multiple payloads can be stored on the Wio Terminal.  
+To select a payload, you have to firstly press and hold the left button and you will be greeted with a menu where you can run the payloads: 
 
 ## Useful links and resources
 
-### How to recover your Pico if it becomes corrupted or doesn't boot.
+### How to recover your Wio Terminal if it becomes corrupted or doesn't boot.
 
 [Reset Instructions](RESET.md)
 
 ### Installation Tool
 
-[raspberrydeveloper](https://github.com/raspberrydeveloper) Created a tool to convert a blank RPi Pico to a ducky.  
-You can find the tool [here](https://github.com/raspberrydeveloper/pyducky)
+[steveiliop56](https://github.com/steveilop56) Created a tool to convert a blank RPi Wio Terminal to a ducky.  
+You can find the tool [here](https://github.com/steveiliop56/pyducky)
 
 ### Docs
 
@@ -192,8 +120,6 @@ You can find the tool [here](https://github.com/raspberrydeveloper/pyducky)
 
 ### Video tutorials
 
-[pico-ducky tutorial by **NetworkChuck**](https://www.youtube.com/watch?v=e_f9p-_JWZw)
+Pico-ducky tutorial by **NetworkChuck**](https://www.youtube.com/watch?v=e_f9p-_JWZw) **(Same as wio terminal)**
 
 [USB Rubber Ducky playlist by **Hak5**](https://www.youtube.com/playlist?list=PLW5y1tjAOzI0YaJslcjcI4zKI366tMBYk)
-
-[CircuitPython tutorial on the Raspberry Pi Pico by **DroneBot Workshop**](https://www.youtube.com/watch?v=07vG-_CcDG0)
