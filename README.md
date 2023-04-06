@@ -5,25 +5,9 @@
 </div>
 
 <div align="center">
-  <strong>Warning! This is a fork of dbisu Wio Terminal-ducky so the code is not mine, it is just modified for the Wio terminal!</strong>
+  <h6>Warning! This is a fork of dbisu Wio Terminal-ducky so the code is not mine, it is just modified for the Wio terminal!</h6>
+  <h6>Warning! Currently nothing works because I am working in the source duckyinpython to fucntion on the wio terminal so this repo is just for testing.</h6>
 </div>
-
-<div align="center">
-  <strong>Warning! Currently nothing works because I am working in the source duckypython to fucntion on the wio terminal so this repo is just for testing.</strong>
-</div>
-
-<br />
-
-<div align="center">
-  <img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/steveiliop56 Wio-ducky">
-  <img alt="GitHub license" src="https://img.shields.io/github/license/steveiliop56 Wio-ducky">
-  <a href="https://github.com/steveiliop56 Wio-ducky/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/steveiliop56 Wio-ducky"></a>
-  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/steveiliop56 Wio-ducky">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/steveiliop56 Wio-ducky">
-</div>
-
-<br />
-
 
 ## Install
 
