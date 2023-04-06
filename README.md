@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-  <h6>Warning! This is a fork of dbisu Wio Terminal-ducky so the code is not mine, it is just modified for the Wio terminal!</h6>
+  <h6>Warning! This is a fork of dbisu pico-ducky so the code is not mine, it is just modified for the Wio terminal!</h6>
   <h6>Warning! Currently nothing works because I am working in the source duckyinpython to fucntion on the wio terminal so this repo is just for testing.</h6>
 </div>
 
