@@ -1,7 +1,7 @@
 <h1 align="center">pico-ducky</h1>
 
 <div align="center">
-  <strong>Make a cheap but powerful USB Rubber Ducky with a Raspberry Pi Pico</strong>
+  <strong>Make a cheap but powerful USB Rubber Ducky with a Wio Terminal</strong>
 </div>
 
 <br />
