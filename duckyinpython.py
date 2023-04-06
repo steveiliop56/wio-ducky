@@ -1,6 +1,7 @@
 # License : GPLv2.0
 # copyright (c) 2023  Dave Bailey
 # Author: Dave Bailey (dbisu, @daveisu)
+# Wio terminal addition: Steve Iliopoulos (steveiliop56, @steveiliop56)
 
 
 import time
@@ -22,6 +23,9 @@ from adafruit_hid.keycode import Keycode
 # replace LANG with appropriate language
 #from keyboard_layout_win_LANG import KeyboardLayout
 #from keycode_win_LANG import Keycode
+
+led = digitalio.DigitalInOut(board.D13)
+led.direction = digitalio.Direction.OUTPUT
 
 duckyCommands = {
     'WINDOWS': Keycode.WINDOWS, 'GUI': Keycode.GUI,
@@ -104,28 +108,10 @@ def parseLine(line):
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayout(kbd)
 
-
-
-
-#init button
-button1_pin = DigitalInOut(GP22) # defaults to input
-button1_pin.pull = Pull.UP      # turn on internal pull-up resistor
-button1 =  Debouncer(button1_pin)
-
-#init payload selection switch
-payload1Pin = digitalio.DigitalInOut(GP4)
-payload1Pin.switch_to_input(pull=digitalio.Pull.UP)
-payload2Pin = digitalio.DigitalInOut(GP5)
-payload2Pin.switch_to_input(pull=digitalio.Pull.UP)
-payload3Pin = digitalio.DigitalInOut(GP10)
-payload3Pin.switch_to_input(pull=digitalio.Pull.UP)
-payload4Pin = digitalio.DigitalInOut(GP11)
-payload4Pin.switch_to_input(pull=digitalio.Pull.UP)
-
 def getProgrammingStatus():
     # check GP0 for setup mode
     # see setup mode for instructions
-    progStatusPin = digitalio.DigitalInOut(GP0)
+    progStatusPin = digitalio.DigitalInOut(board.SWITCH_1)
     progStatusPin.switch_to_input(pull=digitalio.Pull.UP)
     progStatus = not progStatusPin.value
     return(progStatus)
@@ -154,84 +140,65 @@ def runScript(file):
     except OSError as e:
         print("Unable to open file ", file)
 
-def selectPayload():
-    global payload1Pin, payload2Pin, payload3Pin, payload4Pin
-    payload = "payload.dd"
-    # check switch status
-    # payload1 = GPIO4 to GND
-    # payload2 = GPIO5 to GND
-    # payload3 = GPIO10 to GND
-    # payload4 = GPIO11 to GND
-    payload1State = not payload1Pin.value
-    payload2State = not payload2Pin.value
-    payload3State = not payload3Pin.value
-    payload4State = not payload4Pin.value
+#init button
+button1_pin = DigitalInOut(board.SWITCH_3) # defaults to input
+button1_pin.pull = Pull.UP      # turn on internal pull-up resistor
+button1 =  Debouncer(button1_pin)
 
-    if(payload1State == True):
-        payload = "payload.dd"
+# def selectPayload():
+#     payload = "payload.dd"
+#     # check switch status
+#     # payload1 = GPIO4 to GND
+#     # payload2 = GPIO5 to GND
+#     # payload3 = GPIO10 to GND
+#     # payload4 = GPIO11 to GND
+#     payload1State = not payload1Pin.value
+#     payload2State = not payload2Pin.value
+#     payload3State = not payload3Pin.value
+#     payload4State = not payload4Pin.value
 
-    elif(payload2State == True):
-        payload = "payload2.dd"
+#     if(payload1State == True):
+#         payload = "payload.dd"
 
-    elif(payload3State == True):
-        payload = "payload3.dd"
+#     elif(payload2State == True):
+#         payload = "payload2.dd"
 
-    elif(payload4State == True):
-        payload = "payload4.dd"
+#     elif(payload3State == True):
+#         payload = "payload3.dd"
 
-    else:
-        # if all pins are high, then no switch is present
-        # default to payload1
-        payload = "payload.dd"
+#     elif(payload4State == True):
+#         payload = "payload4.dd"
 
-    return payload
+#     else:
+#         # if all pins are high, then no switch is present
+#         # default to payload1
+#         payload = "payload.dd"
 
-async def blink_led(led):
-    print("Blink")
-    if(board.board_id == 'raspberry_pi_pico'):
-        blink_pico_led(led)
-    elif(board.board_id == 'raspberry_pi_pico_w'):
-        blink_pico_w_led(led)
+#     return payload
 
-async def blink_pico_led(led):
-    print("starting blink_pico_led")
-    led_state = False
-    while True:
-        if led_state:
-            #led_pwm_up(led)
-            #print("led up")
-            for i in range(100):
-                # PWM LED up and down
-                if i < 50:
-                    led.duty_cycle = int(i * 2 * 65535 / 100)  # Up
-                await asyncio.sleep(0.01)
-            led_state = False
-        else:
-            #led_pwm_down(led)
-            #print("led down")
-            for i in range(100):
-                # PWM LED up and down
-                if i >= 50:
-                    led.duty_cycle = 65535 - int((i - 50) * 2 * 65535 / 100)  # Down
-                await asyncio.sleep(0.01)
-            led_state = True
-        await asyncio.sleep(0)
-
-async def blink_pico_w_led(led):
-    print("starting blink_pico_w_led")
-    led_state = False
-    while True:
-        if led_state:
-            #print("led on")
-            led.value = 1
-            await asyncio.sleep(0.5)
-            led_state = False
-        else:
-            #print("led off")
-            led.value = 0
-            await asyncio.sleep(0.5)
-            led_state = True
-        await asyncio.sleep(0.5)
+# async def blink_wio_led(led):
+#     print("starting blink_wio_led")
+#     led_state = False
+#     while True:
+#         if led_state:
+#             #led_pwm_up(led)
+#             #print("led up")
+#             for i in range(100):
+#                 # PWM LED up and down
+#                 if i < 50:
+#                     led.duty_cycle = int(i * 2 * 65535 / 100)  # Up
+#                 await asyncio.sleep(0.01)
+#             led_state = False
+#         else:
+#             #led_pwm_down(led)
+#             #print("led down")
+#             for i in range(100):
+#                 # PWM LED up and down
+#                 if i >= 50:
+#                     led.duty_cycle = 65535 - int((i - 50) * 2 * 65535 / 100)  # Down
+#                 await asyncio.sleep(0.01)
+#             led_state = True
+#         await asyncio.sleep(0)
 
 async def monitor_buttons(button1):
     global inBlinkeyMode, inMenu, enableRandomBeep, enableSirenMode,pixel
