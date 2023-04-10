@@ -1,0 +1,8 @@
+Gui r
+DELAY 400
+STRING notepad.exe
+DELAY 100
+ENTER
+DELAY 700
+STRING You have been hacked by payload 0!
+ENTER
