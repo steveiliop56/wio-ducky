@@ -59,7 +59,7 @@ This will prevent the Wio Terminal-ducky from showing up as a USB drive when plu
 - Remove the jumper and reconnect to your PC to reprogram.  
  **Wio Terminal:** The default mode is USB mass storage enabled.
 
-(Image-Storage-Wio-Jumper)
+![Enable Storage Wiring](https://user-images.githubusercontent.com/106091011/230954488-d0b1f9bb-09fe-4169-92f2-5fff513782a0.png)
 
 ### Screen enable/disable mode
 
@@ -70,14 +70,14 @@ This will prevent the Wio Terminal-ducky from showing up as a USB drive when plu
 - Remove the jumper and reconnect to your PC to reprogram.  
  **Wio Terminal:** The default mode is USB mass storage enabled.
 
-(Image-Jumper-WIo-Screen)
+![Disable Screen Wiring](https://user-images.githubusercontent.com/106091011/230954611-9575da69-0164-4db4-b0ad-d58454557500.png)
 
 ### Multiple payloads
 
 Multiple payloads can be stored on the Wio Terminal.  
 To select a payload, you have to firstly press and hold the left button and you will be greeted with a menu where you can run the payloads stored in the `payloads` folder. The payloads should be named with these 4 names: `payload.dd` (which is the default one), `payload1.dd`, `payload2.dd`, `payload3.dd`. Here is a picture of how the menu looks:
 
-(Image-WIo-Menu)
+![Payload Selector Menu](https://user-images.githubusercontent.com/106091011/230953940-75acc450-ff7e-4919-b3fe-297a8ee2b792.jpg)
 
 ### Self destroy mode
 
