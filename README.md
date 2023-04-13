@@ -35,7 +35,8 @@ the `adafruit-circuitpython-display-text-8.x-mpy-2.28.1.zip` from [here](https:/
 
 11. Copy `duckyinpython.py`, `code.py`, `screen_menu.py`, to the root folder of the Wio Terminal.
 
-**Note:** You can skip installing all the requirements manually by just running the `circup` command and you will find the requirements inside the `requirements.txt` file.
+**Note:** You can skip installing all the requirements manually by just running the `circup` command and you will find the requirements inside the `requirements.txt` file. Also there is a ready to go [zip file](https://github.com/steveiliop56/wio-ducky/releases/tag/V1.0) that you can download and extract directly into your wio terminal, it also contains 4 simple payloads that just open notepad and write a message like this: `You have been hacked by payload 0!`
+
 ### Payloads 
 
 1.  Find a script [here](https://github.com/hak5/usbrubberducky-payloads) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Wio Terminal `payloads` folder. You can copy the 4 default ones from your clone of the repository. Currently, wio-ducky only supports DuckScript 1.0, not 3.0.
