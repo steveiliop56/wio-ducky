@@ -14,7 +14,7 @@ Install and have your USB Rubber Ducky working in less than 5 minutes.
 
 1. Clone the repo to get a local copy of the files. `git clone https://github.com/steveiliop56/wio-ducky.git`
 
-2. Download [CircuitPython for the Wio Terminal](https://circuitpython.org/board/seeeduino_wio_terminal/). *Updated to 8.0.5  
+2. Download [CircuitPython for the Wio Terminal](https://circuitpython.org/board/seeeduino_wio_terminal/).
 
 3. Plug the device into a USB port and enter bootloader mode by sliding the power button down very fast 2 times. It will show up as a removable media device named `ARDUINO`.
 
@@ -28,55 +28,57 @@ Install and have your USB Rubber Ducky working in less than 5 minutes.
 
 8. Copy `asyncio` to the `lib` folder on your Wio Terminal.
 
-9. Download both `adafruit-circuitpython-display-shapes-8.x-mpy-2.6.0.zip` from [here](https://github.com/adafruit/Adafruit_CircuitPython_Display_Shapes/releases) and 
-the `adafruit-circuitpython-display-text-8.x-mpy-2.28.1.zip` from [here](https://github.com/adafruit/Adafruit_CircuitPython_Display_Text/releases) extract them and copy the `adafruit_display_shapes` and the `adafruit_display_text` to the `lib` folder of your wio terminal.
+9. Download both `adafruit-circuitpython-display-shapes-8.x-mpy-2.6.0.zip` from [here](https://github.com/adafruit/Adafruit_CircuitPython_Display_Shapes/releases) and
+   the `adafruit-circuitpython-display-text-8.x-mpy-2.28.1.zip` from [here](https://github.com/adafruit/Adafruit_CircuitPython_Display_Text/releases) extract them and copy the `adafruit_display_shapes` and the `adafruit_display_text` to the `lib` folder of your who terminal.
 
 10. Copy `boot.py` from your clone to the root of your Wio Terminal.
 
 11. Copy `duckyinpython.py`, `code.py`, `screen_menu.py`, to the root folder of the Wio Terminal.
 
-**Note:** You can skip installing all the requirements manually by just running the `circup` command and you will find the requirements inside the `requirements.txt` file. Also there is a ready to go [zip file](https://github.com/steveiliop56/wio-ducky/releases/tag/V1.0) that you can download and extract directly into your wio terminal, it also contains 4 simple payloads that just open notepad and write a message like this: `You have been hacked by payload 0!`
+**Note:** You can skip installing all the requirements manually by just running the `circup` command and you will find the requirements inside the `requirements.txt` file. Also, there is a ready-to-go [zip file](https://github.com/steveiliop56/wio-ducky/releases/) that you can download and extract directly into your Wio terminal, it also contains 4 simple payloads that just open Notepad and write a message like this: `You have been hacked by payload 0!`
 
-### Payloads 
+### Payloads
 
 1.  Find a script [here](https://github.com/hak5/usbrubberducky-payloads) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Wio Terminal `payloads` folder. You can copy the 4 default ones from your clone of the repository. Currently, wio-ducky only supports DuckScript 1.0, not 3.0.
 
 2.  Be careful, if your device isn't in [setup mode](#setup-mode), the device will reboot and after half a second, the script will run.
 
-3.  **Please note:** by default Wio Terminal will not show as a USB drive!
+3.  **Please note:** by default, Wio Terminal will not show as a USB drive!
 
-### Setup mode 
+### Setup mode
 
-To edit the payload, enter setup mode by pressing the right top button, this will stop the Wio wio-ducky from injecting the payload in your own machine.
+To edit the payload, enter setup mode by pressing the right top button, this will stop the Wio wio-ducky from injecting the payload into your machine.
 
-### USB enable/disable mode 
+### USB enable/disable mode
 
-If you need the wio-ducky to not show up as a USB mass storage device for stealth, follow these instructions.  
-- Enter setup mode.    
-- Copy your payload script to the wio-ducky.  
+If you need the wio-ducky to not show up as a USB mass storage device for stealth, follow these instructions.
+
+- Enter setup mode.
+- Copy your payload script to the wio-ducky.
 - Disconnect the Wio Terminal from your host PC.
 - Connect a jumper wire between pin 6 (`GND`) and pin 13 (`D0`).  
-This will prevent the Wio Terminal-ducky from showing up as a USB drive when plugged into the target computer.  
+  This will prevent the Wio Terminal-ducky from showing up as a USB drive when plugged into the target computer.
 - Remove the jumper and reconnect to your PC to reprogram.  
- **Wio Terminal:** The default mode is USB mass storage enabled.
+  **Wio Terminal:** The default mode is USB mass storage enabled.
 
 ![Enable Storage Wiring](https://user-images.githubusercontent.com/106091011/230954488-d0b1f9bb-09fe-4169-92f2-5fff513782a0.png)
 
 ### Screen enable/disable mode
 
-If you need the wio-ducky's display to not show logs in the display, follow these instructions.  
+If you need the wio-ducky's display to not show logs in the display, follow these instructions.
+
 - Disconnect the Wio Terminal from your host PC.
 - Connect a jumper wire between pin 4 (`+5V`) and pin 15 (`D1`).  
-This will prevent the Wio Terminal-ducky from showing up as a USB drive when plugged into the target computer.  
+  This will prevent the Wio Terminal-ducky from showing up as a USB drive when plugged into the target computer.
 - Remove the jumper and reconnect to your PC to reprogram.  
- **Wio Terminal:** The default mode is USB mass storage enabled.
+  **Wio Terminal:** The default mode is USB mass storage enabled.
 
 ![Disable Screen Wiring](https://user-images.githubusercontent.com/106091011/230954611-9575da69-0164-4db4-b0ad-d58454557500.png)
 
 ### Multiple payloads
 
 Multiple payloads can be stored on the Wio Terminal.  
-To select a payload, you have to firstly press and hold the left button and you will be greeted with a menu where you can run the payloads stored in the `payloads` folder. The payloads should be named with these 4 names: `payload.dd` (which is the default one), `payload1.dd`, `payload2.dd`, `payload3.dd`. Here is a picture of how the menu looks:
+To select a payload, you have to first press and hold the left button and you will be greeted with a menu where you can run the payloads stored in the `payloads` folder. The payloads should be named with these 4 names: `payload.dd` (which is the default one), `payload1.dd`, `payload2.dd`, `payload3.dd`. Here is a picture of how the menu looks:
 
 ![Payload Selector Menu](https://user-images.githubusercontent.com/106091011/230953940-75acc450-ff7e-4919-b3fe-297a8ee2b792.jpg)
 
@@ -88,12 +90,7 @@ If you hold the middle button while the wio terminal is booting it will erase ev
 
 ### Plug and Play
 
-In the [releases](https://github.com/steveiliop56/wio-ducky/releases) page you can find a file named `wio-ducky-plug-and-play.zip` which you can just unzip in your wio terminal copy your payloads and it's ready!
-
-### Installation Tool
-
-[steveiliop56](https://github.com/steveilop56) Created a tool to convert a blank Wio Terminal to a ducky.  
-You can find the tool [here](https://github.com/steveiliop56/pyducky) **(no longer maintained and not working with wio-ducky)**
+On the [releases](https://github.com/steveiliop56/wio-ducky/releases)](https://github.com/steveiliop56/wio-ducky/releases) page, you can find a file named `wio-ducky-plug-and-play.zip` which you can just unzip in your wio terminal copy your payloads and it's ready!
 
 ### Docs
 
