@@ -1,20 +1,21 @@
 # License : GPLv2.0
 # copyright (c) 2023  Dave Bailey
 # Author: Dave Bailey (dbisu, @daveisu)
-# Wio terminal addition: Steve Iliopoulos (steveiliop56, @steveiliop56)
+# Wio terminal addition: Stavros (steveiliop56, @steveiliop56)
 
-
-import time
-import digitalio
+from adafruit_hid.keyboard import Keyboard
 from digitalio import DigitalInOut, Pull
 from adafruit_debouncer import Debouncer
-import board
+from screen_menu import *
 from board import *
-import pwmio
+import digitalio
 import asyncio
 import usb_hid
-from adafruit_hid.keyboard import Keyboard
-from screen_menu import *
+import storage
+import board
+import pwmio
+import time
+
 
 # comment out these lines for non_US keyboards
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS as KeyboardLayout
@@ -25,21 +26,17 @@ from adafruit_hid.keycode import Keycode
 #from keyboard_layout_win_LANG import KeyboardLayout
 #from keycode_win_LANG import Keycode
 
-# Init button
-button1_pin = DigitalInOut(board.BUTTON_3) # defaults to input
-button1_pin.pull = Pull.UP      # turn on internal pull-up resistor
-button1 =  Debouncer(button1_pin)
-
 # Built in led
 
 led = digitalio.DigitalInOut(board.D13)
 led.switch_to_output()
 
 # Language
+
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayout(kbd)
 
-defaultDelay = 0
+defaultDelay = 0.2
 
 duckyCommands = {
     'WINDOWS': Keycode.WINDOWS, 'GUI': Keycode.GUI,
@@ -119,14 +116,6 @@ def parseLine(line):
         newScriptLine = convertLine(line)
         runScriptLine(newScriptLine)
 
-def getProgrammingStatus():
-    # check GP0 for setup mode
-    # see setup mode for instructions
-    progStatusPin = digitalio.DigitalInOut(board.BUTTON_1)
-    progStatusPin.switch_to_input(pull=digitalio.Pull.UP)
-    progStatus = not progStatusPin.value
-    return(progStatus)
-
 def runScript(file):
     global defaultDelay
 
@@ -148,48 +137,55 @@ def runScript(file):
     except OSError as e:
         print("Unable to open file ", file, ".")
 
-async def blink_wio_led(led):
-    print("starting blink_wio_led")
-    led_state = False
-    while True:
-        if led_state:
-            #print("led on")
-            led.value = 1
-            await asyncio.sleep(0.5)
-            led_state = False
-        else:
-            #print("led off")
-            led.value = 0
-            await asyncio.sleep(0.5)
-            led_state = True
-        await asyncio.sleep(0.5)
+def getProgrammingStatus():
+    # see setup mode for instructions
+    progStatusPin = digitalio.DigitalInOut(board.BUTTON_1)
+    progStatusPin.switch_to_input(pull=digitalio.Pull.UP)
+    progStatus = not progStatusPin.value
+    return(progStatus)
 
-async def monitor_buttons(button1):
-    global inBlinkeyMode, inMenu, enableRandomBeep, enableSirenMode,pixel
-    print("starting monitor_buttons")
-    button1Down = False
-    while True:
-        button1.update()
+def getMenuStatus():
+    # see setup mode for instructions
 
-        button1Pushed = button1.fell
-        button1Released = button1.rose
-        button1Held = not button1.value
+    # Check if button is pressed
+    menuStatusPin = digitalio.DigitalInOut(board.BUTTON_3)
+    menuStatusPin.switch_to_input(pull=digitalio.Pull.UP)
+    menuStatus = not menuStatusPin.value
 
-        if(button1Pushed):
-            print("Button 1 pushed!")
-            button1Down = True
-        if(button1Released):
-            print("Button 1 released!")
-            if(button1Down):
-                print("Button 1 pushed and released!")
+    # Check if screen is enabled
+    noScreenPin = digitalio.DigitalInOut(board.D1)
+    noScreenPin.switch_to_input(pull=digitalio.Pull.DOWN)
+    noScreenStatus = noScreenPin.value
 
-        if(button1Released):
-            if(button1Down):
-                # Run selected payload
-                payload = selectPayload(startup=False)
-                print(f"Running {payload}.")
-                runScript(payload)
-                print("Done!")
-            button1Down = False
+    if noScreenStatus == True:
+        print("Cannot enable menu, screen is disabled!")
+        return False
+    else:
+        print("Screen enabled continuing.")
+        return(menuStatus)
+    
+def getScreenStatus():
+    noScreenPin = digitalio.DigitalInOut(board.D1)
+    noScreenPin.switch_to_input(pull=digitalio.Pull.DOWN)
+    noScreenStatus = noScreenPin.value
 
-        await asyncio.sleep(0)
+    # If D1 is not connected, it will default to being pulled high (False)
+    # If D1 is connected to 5V, it will be low (True)
+
+    if noScreenStatus == True:
+        return True
+    else:
+        return False
+
+def getStorageStatus():
+    noStoragePin = digitalio.DigitalInOut(board.D0)
+    noStoragePin.switch_to_input(pull=digitalio.Pull.UP)
+    noStorageStatus = noStoragePin.value
+
+    # If D0 is not connected, it will default to being pulled high (True)
+    # If D0 is connected to GND, it will be low (False)
+
+    if noStorageStatus == True:
+        return True
+    else:
+        return False

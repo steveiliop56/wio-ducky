@@ -1,6 +1,6 @@
 # License : GPLv2.0
-# copyright (c) 2023  Steve Iliopoulos
-# Author: Steve Iliopoulos (steveiliop56, @steveiliop56)
+# copyright (c) 2023  Stavros
+# Author: Stavros (steveiliop56, @steveiliop56)
 
 import board
 import displayio
@@ -99,13 +99,3 @@ def display_menu():
 
     # Return the selected option
     return OPTIONS.index(OPTIONS[cursor_position])
-
-def selectPayload(startup):
-    if startup == True:
-        return "payloads/payload.dd"
-    else:
-        option = display_menu()
-        if option == 0:
-            return "payloads/payload.dd"
-        else:
-            return f"payloads/payload{str(option)}.dd"
