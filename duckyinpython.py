@@ -12,9 +12,11 @@ import digitalio
 import asyncio
 import usb_hid
 import storage
+import alarm
 import board
 import pwmio
 import time
+
 
 
 # comment out these lines for non_US keyboards
@@ -142,7 +144,8 @@ def getProgrammingStatus():
     progStatusPin = digitalio.DigitalInOut(board.BUTTON_1)
     progStatusPin.switch_to_input(pull=digitalio.Pull.UP)
     progStatus = not progStatusPin.value
-    return(progStatus)
+    
+    return progStatus
 
 def getMenuStatus():
     # see setup mode for instructions
@@ -162,7 +165,7 @@ def getMenuStatus():
         return False
     else:
         print("Screen enabled continuing.")
-        return(menuStatus)
+        return menuStatus
     
 def getScreenStatus():
     noScreenPin = digitalio.DigitalInOut(board.D1)

@@ -34,8 +34,10 @@ if progStatus == False:
         payload = display_menu()
         if payload == 0:
             runScript("payloads/payload.dd")
+            print("Done!")
         else:
             runScript(f"payloads/payload{str(payload)}.dd")
+            print("Done!")
     else:
         print(f"Running default payload.")
         runScript("payloads/payload.dd")
